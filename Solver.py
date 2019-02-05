@@ -157,3 +157,12 @@ if __name__ == '__main__':
 	cv2.waitKey(2000)
 	cv2.destroyAllWindows()
 	pl.imshow(black)
+	height, width, channel = black.shape
+	cellHeight = height//9
+	cellWidth = width//9
+	rows = []
+	cols = []
+	startHeight = 0
+	for i in range(1, 10):
+	    rows.append(black[startHeight:i*cellHeight, 0:width])
+	    startHeight += cellHeight
