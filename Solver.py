@@ -2,7 +2,9 @@
 from tkinter import *
 from tkinter import messagebox
 import numpy as np
-
+import cv2
+import pylab as pl
+import numpy as np
 
 class Sudoku:
     def __init__(self, sudoku):
@@ -122,3 +124,36 @@ if __name__ == '__main__':
              [0,4,0,2,0,0,3,1,9]] 
 
     a = gui(grid)
+
+	image = cv2.imread(r'C:\Users\e6ncbcy\Desktop\0.png')
+	gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+	gray = cv2.GaussianBlur(gray_image,(1,1),5)
+	#smooth the contours
+	thresh = cv2.adaptiveThreshold(gray,255,1,1,11,2)
+	temp, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+
+	area = []
+	for i in contours:
+	    area.append(cv2.contourArea(i))
+	index = area.index(max(area))
+	axis_x = contours[index][:, 0, 0]
+	axis_y = contours[index][:, 0, 1]
+
+	corners = np.asarray([[[min(axis_x), min(axis_y)], 
+	                       [min(axis_x), max(axis_y)], 
+	                       [max(axis_x), max(axis_y)], 
+	                       [max(axis_x), min(axis_y)]]])
+	#extract for corner points
+	cv2.drawContours(image, [corners], 0, (0,255,0), 1)
+	print(min(axis_y), max(axis_y), min(axis_x), max(axis_x))
+	cropped = image[min(axis_y):max(axis_y), min(axis_x):max(axis_x)]
+
+	# cv2.imshow('img',image)
+	# cv2.waitKey(2000)
+	# cv2.destroyAllWindows()
+	# show boundary box
+	black = cv2.bitwise_not(cropped) 
+	cv2.imshow('img',black)
+	cv2.waitKey(2000)
+	cv2.destroyAllWindows()
+	pl.imshow(black)
