@@ -166,3 +166,8 @@ if __name__ == '__main__':
 	for i in range(1, 10):
 	    rows.append(black[startHeight:i*cellHeight, 0:width])
 	    startHeight += cellHeight
+    for i in rows:
+        startWidth = 0
+        for j in range(1, 10):
+            cols.append(i[0:cellHeight,startWidth:j*cellWidth])
+            startWidth += cellWidth
