@@ -7,6 +7,7 @@ from skimage import data, color, exposure
 from sklearn.model_selection import  train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.externals import joblib
+import cv2
 df = pd.read_csv(r"D:\Erbo's Script\MNIST\mnist\train-labels.csv", names=['file', 'value'])
 rawImages = []
 features = []
