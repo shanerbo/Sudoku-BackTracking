@@ -144,15 +144,17 @@ if __name__ == '__main__':
 	                       [max(axis_x), max(axis_y)], 
 	                       [max(axis_x), min(axis_y)]]])
 	#extract for corner points
-	cv2.drawContours(image, [corners], 0, (0,255,0), 1)
-	print(min(axis_y), max(axis_y), min(axis_x), max(axis_x))
 	cropped = image[min(axis_y):max(axis_y), min(axis_x):max(axis_x)]
 
+	# cv2.drawContours(image, [corners], 0, (0,255,0), 1)
 	# cv2.imshow('img',image)
 	# cv2.waitKey(2000)
 	# cv2.destroyAllWindows()
 	# show boundary box
-	black = cv2.bitwise_not(cropped) 
+
+	ret,black = cv2.threshold(cropped,100,255,cv2.THRESH_BINARY_INV)# binary black or white
+	# black = cv2.bitwise_not(cropped) # for photo
+
 	cv2.imshow('img',black)
 	cv2.waitKey(2000)
 	cv2.destroyAllWindows()
