@@ -1,3 +1,6 @@
+from tkinter import *
+from tkinter import messagebox
+import Solver
 class gui:
     main = Tk()
     def __init__(self, grid):
