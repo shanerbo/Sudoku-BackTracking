@@ -76,19 +76,20 @@ class Sudoku:
         return False
 
     class gui:
-    def __init__(self, grid):
-        self.grid = grid
         main = Tk()
-        main.geometry("270x300")
-        entries = {}
-        point = 0
-        for a, i in zip(range(0, 270, 30), range(9)):
-            for b, j in zip(range(0, 270, 30), range(9)):
-                temp = Entry(main)
-                temp.place(x=b, y=a, width=30, height=30)
-                temp.insert(END, self.grid[i][j])
-                entries[point] = temp
-                point += 1
+        def __init__(self, grid):
+            self.grid = grid
+            main.geometry("270x300")
+            entries = {}
+            point = 0
+            for a, i in zip(range(0, 270, 30), range(9)):
+                for b, j in zip(range(0, 270, 30), range(9)):
+                    temp = Entry(main)
+                    temp.place(x=b, y=a, width=30, height=30)
+                    temp.insert(END, self.grid[i][j])
+                    entries[point] = temp
+                    point += 1
+                    
         def onPress():
             data = []
             for i, j in entries.items():
@@ -108,68 +109,6 @@ class Sudoku:
                 j.delete(0, END)
                 j.insert(0,result[i])
 
-        b = Button(main, text="Solve", command=onPress)
-        b.pack(side=BOTTOM)
-        main.mainloop()
-if __name__ == '__main__':
-    
-    grid =  [[0,1,6,0,7,0,4,0,0], 
-             [5,0,0,0,0,0,0,0,8], 
-             [0,8,7,0,0,0,0,3,0], 
-             [2,0,0,0,1,0,0,0,7], 
-             [9,0,0,8,0,3,0,0,5], 
-             [0,5,0,0,9,0,6,0,3], 
-             [1,3,0,0,0,0,2,0,6], 
-             [6,0,0,0,0,0,0,7,4], 
-             [0,4,0,2,0,0,3,1,9]] 
-
-    a = gui(grid)
-
-	image = cv2.imread(r'C:\Users\e6ncbcy\Desktop\0.png')
-	gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-	gray = cv2.GaussianBlur(gray_image,(1,1),5)
-	#smooth the contours
-	thresh = cv2.adaptiveThreshold(gray,255,1,1,11,2)
-	temp, contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-
-	area = []
-	for i in contours:
-	    area.append(cv2.contourArea(i))
-	index = area.index(max(area))
-	axis_x = contours[index][:, 0, 0]
-	axis_y = contours[index][:, 0, 1]
-
-	corners = np.asarray([[[min(axis_x), min(axis_y)], 
-	                       [min(axis_x), max(axis_y)], 
-	                       [max(axis_x), max(axis_y)], 
-	                       [max(axis_x), min(axis_y)]]])
-	#extract for corner points
-	cropped = image[min(axis_y):max(axis_y), min(axis_x):max(axis_x)]
-
-	# cv2.drawContours(image, [corners], 0, (0,255,0), 1)
-	# cv2.imshow('img',image)
-	# cv2.waitKey(2000)
-	# cv2.destroyAllWindows()
-	# show boundary box
-
-	ret,black = cv2.threshold(cropped,100,255,cv2.THRESH_BINARY_INV)# binary black or white
-	# black = cv2.bitwise_not(cropped) # for photo
-
-	cv2.imshow('img',black)
-	cv2.waitKey(2000)
-	cv2.destroyAllWindows()
-	pl.imshow(black)
-	height, width, channel = black.shape
-	cellHeight = height//9
-	cellWidth = width//9
-	rows = []
-	cols = []
-	startHeight = 0
-	for i in range(1, 10):
-	    rows.append(black[startHeight:i*cellHeight, 0:width])
-	    startHeight += cellHeight
-    for i in rows:
-        startWidth = 0
-        for j in range(1, 10):
-            cols.append(i[0:cellHeight,startWidth:j*cellWidth])
-            startWidth += cellWidth
+            b = Button(main, text="Solve", command=onPress)
+            b.pack(side=BOTTOM)
+            main.mainloop()
