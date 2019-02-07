@@ -1,7 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 import Solver
-class gui:
+class Gui:
     main = Tk()
     def __init__(self, grid):
         self.grid = grid
