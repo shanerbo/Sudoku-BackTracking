@@ -69,15 +69,13 @@ class Image2Sudoku:
                 dist_center = np.sqrt(np.square(cellWidth // 2 - i) + np.square(cellHeight // 2 - j))
                 if dist_center > cellWidth // 2 - (cellWidth + cellHeight)**(1./3.):
                     cell[i, j] = 0
-                if np.sum(cell[i, j]) != 0:
-                    leftMost = j if j <= leftMost else leftMost
-                    rightMost = j if j >= rightMost else rightMost
-                    topMost = i if i < topMost else topMost
-                    botMost = i if i > botMost else botMost
         if np.sum(cell) == 0:
             return None        
         #return cv2.resize(cell[topMost: botMost, leftMost: rightMost], (50,50))
-        return cell[topMost: botMost, leftMost: rightMost]
+        active_px = np.argwhere(cell!=0)
+        active_px = active_px[:,[1,0]]
+        x,y,w,h = cv2.boundingRect(active_px)
+        return cell[y:y+h, x:x+w]
 
 
 # In[ ]:
