@@ -7,6 +7,7 @@
 import cv2
 import pylab as pl
 import numpy as np
+import math
 
 class Image2Sudoku:
     
@@ -35,8 +36,8 @@ class Image2Sudoku:
 
         return gray[min(axis_y):max(axis_y), min(axis_x):max(axis_x)]
         
-    def getCells(self, cropped):
-        ret,black = cv2.threshold(cropped,100,255,cv2.THRESH_BINARY_INV)# binary black or white
+    def getCells(self):
+        ret,black = cv2.threshold(self.cropImage(),100,255,cv2.THRESH_BINARY_INV)# binary black or white
         # black = cv2.bitwise_not(cropped) # for photo
 
         height, width = black.shape
@@ -62,11 +63,11 @@ class Image2Sudoku:
         for i in range(cell.shape[0]):
             for j in range(cell.shape[1]):
                 dist_center = np.sqrt(np.square(cellWidth // 2 - i) + np.square(cellHeight // 2 - j))
-                if dist_center > cellWidth // 2 - np.sqrt((cellWidth + cellHeight)//2):
+                if dist_center > cellWidth // 2 - (cellWidth + cellHeight)**(1./3.):
                     cell[i, j] = 0
         if np.sum(cell) == 0:
             return None        
-        return cell
+        return cv2.resize(cell, (50,50))
 
 
 # In[ ]:
