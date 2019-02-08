@@ -60,14 +60,24 @@ class Image2Sudoku:
         return cells
         
     def cleanNoise(self, cell, cellWidth, cellHeight):
+        leftMost = 999
+        rightMost = 0
+        topMost = 999
+        botMost = 0
         for i in range(cell.shape[0]):
             for j in range(cell.shape[1]):
                 dist_center = np.sqrt(np.square(cellWidth // 2 - i) + np.square(cellHeight // 2 - j))
                 if dist_center > cellWidth // 2 - (cellWidth + cellHeight)**(1./3.):
                     cell[i, j] = 0
+                if np.sum(cell[i, j]) != 0:
+                    leftMost = j if j <= leftMost else leftMost
+                    rightMost = j if j >= rightMost else rightMost
+                    topMost = i if i < topMost else topMost
+                    botMost = i if i > botMost else botMost
         if np.sum(cell) == 0:
             return None        
-        return cv2.resize(cell, (50,50))
+        #return cv2.resize(cell[topMost: botMost, leftMost: rightMost], (50,50))
+        return cell[topMost: botMost, leftMost: rightMost]
 
 
 # In[ ]:
