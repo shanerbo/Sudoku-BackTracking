@@ -60,10 +60,6 @@ class Image2Sudoku:
         return cells
         
     def cleanNoise(self, cell, cellWidth, cellHeight):
-        leftMost = 999
-        rightMost = 0
-        topMost = 999
-        botMost = 0
         for i in range(cell.shape[0]):
             for j in range(cell.shape[1]):
                 dist_center = np.sqrt(np.square(cellWidth // 2 - i) + np.square(cellHeight // 2 - j))
@@ -77,24 +73,4 @@ class Image2Sudoku:
         x,y,w,h = cv2.boundingRect(active_px)
         return cell[y:y+h, x:x+w]
 
-
-# In[ ]:
-
-
-#a = Image2Sudoku(r'C:\Users\e6ncbcy\Desktop\1.png')
-
-
-# In[ ]:
-
-
-#cropped = a.cropImage()
-
-
-# In[ ]:
-
-
-# import time
-# startTime = time.time()
-# allCells = a.getCells(cropped)
-# cost = time.time() - startTime
 
