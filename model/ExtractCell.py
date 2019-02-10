@@ -66,11 +66,13 @@ class Image2Sudoku:
                 if dist_center > cellWidth // 2 - (cellWidth + cellHeight)**(1./3.):
                     cell[i, j] = 0
         if np.sum(cell) == 0:
-            return None        
-        #return cv2.resize(cell[topMost: botMost, leftMost: rightMost], (50,50))
+            return None
         active_px = np.argwhere(cell!=0)
         active_px = active_px[:,[1,0]]
         x,y,w,h = cv2.boundingRect(active_px)
+        # if read extracted image it will not be binary image
+        # need to come up a method that read all cells into a array
+        # knn and svm accuracy is not good
         return cell[y:y+h, x:x+w]
 
 
