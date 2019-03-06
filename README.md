@@ -14,10 +14,15 @@
 ## Sudoku Image Processing
   Program can take an image of sudoku as input. It could extract digits on image and convert them to string.
 ### How it works?
-  (Underconstruction)
+  God damn it. It is too hard to have it worked.
+  * Bottleneck:
+  1. Different resulotion may make result vary.
+  2. For different fonts, the accuracy changes.
+  3. After I got binary clipped images, I need to feed them to model I trained. The problem is I need to convert them into binary format again. Time complexity is high AF.
+
 
 #### TODO:
   Make an iOS app that can solve Sudoku game.
   1. App can generate questions.(if it is hard to generate, we can store question on cloud)
   2. App can solve problems.
-  3. App can cast image into grid(OCR) so that user do not need to manually type in problem.
+  3. App can cast image into grid(OCR) so that user do not need to manually type in problem(ARKit).
