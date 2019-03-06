@@ -17,7 +17,7 @@
   God damn it. It is too hard to have it worked.
   * Bottleneck:
   1. Different resulotion may make result vary.
-  2. For different fonts, the accuracy changes.
+  2. For different fonts, the accuracy changes. So far, the best score I have hit is 86% percent for a certain font.
   3. After I got binary clipped images, I need to feed them to model I trained. The problem is I need to convert them into binary format again. Time complexity is high AF.
 
 
