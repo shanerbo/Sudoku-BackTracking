@@ -1,9 +1,13 @@
 # Sudoku-BackTracking
 ## Use Back Tracking to solve Sudoku.
-### Why?
-  I was asked to implement a Sudoku game in a interview. Back then, I had no idea about what Sudoku is and how to make a routine to solve Sudoku. But I believe that solving Sudoku is really worth to try.
-### How?
-  We can assign numbers to empty cells, before assigning numbers, we need to check if the number is valid to assign. We need to check if the number is nor present in current row, column and 3x3 square([sudoku rule](http://www.counton.org/sudoku/rules-of-sudoku.php)). If the number is good, we recursively to check if this assignment will lead to correct result. One thing needs to be mentioned that each Sudoku may have multiple solutions.
+### Why does this project exist?
+  I was asked to implement a Sudoku game in a interview. I was unfimiliar with the Sudoku game and the implementation of it. This project aims to create a routine that solves Sudoku games. I believe there are lessons to be learned in implementing a Sudoku solver.
+### How to implement it?
+  - Assign numbers to empty cells. 
+  - Before assigning numbers, check if the number is valid to assign. 
+  - Check if the number is not present in current row, column and 3x3 square([sudoku rule](http://www.counton.org/sudoku/rules-of-sudoku.php)). 
+  - If the number is good, recursively check if this assignment will lead to correct result. 
+  - One problem worth mentioning is that each Sudoku game may have multiple solutions.
 ### Big-O?
   O(n^m) where n is size of Sudoku (i.e.in classic Sudoku game, n is 9), m is blank cells. Also solving sudoku is NP-Hard problem.
 ### How to test it?
@@ -13,12 +17,12 @@
 
 ## Sudoku Image Processing
   Program can take an image of sudoku as input. It could extract digits on image and convert them to string.
-### How it works?
-  God damn it. It is too hard to have it worked.
+### Does it works?
+  GODDAMNIT. It is too hard to make it work.
   * Bottleneck:
-  1. Different resulotion may make result vary.
+  1. Different resulotion may vary the result.
   2. For different fonts, the accuracy changes. So far, the best score I have hit is 86% percent for a certain font.
-  3. After I got binary clipped images, I need to feed them to model I trained. The problem is I need to convert them into binary format again. Time complexity is high AF.
+  3. After I got binary clipped images, I need to feed them to model I trained. The problem is I need to convert them into binary format again. Time complexity is high.
 
 
 #### TODO:
