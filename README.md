@@ -1,8 +1,8 @@
 # Sudoku-BackTracking
 ## Use Back Tracking to solve Sudoku.
-### Why?
+### Why does this project exist?
   I was asked to implement a Sudoku game in a interview. I was unfimiliar with the Sudoku game and the implementation of it. This project aims to create a routine that solves Sudoku games. I believe there are lessons to be learned in implementing a Sudoku solver.
-### How does it work?
+### How to implement it?
   - Assign numbers to empty cells. 
   - Before assigning numbers, check if the number is valid to assign. 
   - Check if the number is not present in current row, column and 3x3 square([sudoku rule](http://www.counton.org/sudoku/rules-of-sudoku.php)). 
@@ -17,12 +17,12 @@
 
 ## Sudoku Image Processing
   Program can take an image of sudoku as input. It could extract digits on image and convert them to string.
-### How it works?
-  God damn it. It is too hard to have it worked.
+### Does it works?
+  GODDAMNIT. It is too hard to make it work.
   * Bottleneck:
-  1. Different resulotion may make result vary.
+  1. Different resulotion may vary the result.
   2. For different fonts, the accuracy changes. So far, the best score I have hit is 86% percent for a certain font.
-  3. After I got binary clipped images, I need to feed them to model I trained. The problem is I need to convert them into binary format again. Time complexity is high AF.
+  3. After I got binary clipped images, I need to feed them to model I trained. The problem is I need to convert them into binary format again. Time complexity is high.
 
 
 #### TODO:
