@@ -9,20 +9,20 @@
   4. If the number is good, recursively check if this assignment will lead to correct result. 
   5. One problem worth mentioning is that each Sudoku game may have multiple solutions.
 ### Big-O?
-  O(n^m) where n is size of Sudoku (i.e.in classic Sudoku game, n is 9), m is blank cells. Also solving sudoku is NP-Hard problem.
+  O(n^m) where n is size of Sudoku (i.e.in classic Sudoku game, n is 9), m is the number of blank cells. Also solving sudoku is NP-Hard problem.
 ### How to test it?
-  I create a simple UI for this program using Tkinter. 0's for empty cells, you can type any Sudoku question into that grid. After entering all data, you can just simply hit solve button, it will generate a solution for you Sudoku question.
+  I created a simple UI for this program using Tkinter. 0's for empty cells, you can type any Sudoku question into that grid. After entering all data, you can just simply hit solve button, it will generate a solution for your Sudoku question.
 ### Any improvement?
-  Using dancing links with algorithm X to solve Sudoku will be much more faster than backtracking. Also it is hard to generate a sudoku question. Solving is easy, generating is hard. You need to create a full sudoku grid, and check if it is valid.
+  Using dancing links with algorithm X to solve Sudoku will be faster than backtracking. Also it is hard to generate a sudoku question. Solving is easy, generating is hard. You need to create a full sudoku grid, and check if it is valid.
 
 ## Sudoku Image Processing
-  Program can take an image of sudoku as input. It could extract digits on image and convert them to string.
+  Program can take an image of sudoku as input. It could extract digits on image and convert them to strings.
 ### Does it works?
   GODDAMNIT. It is too hard to make it work.
   * Bottleneck:
   1. Different resolution may vary the result.
   2. For different fonts, the accuracy changes. So far, the best score I have hit is 86% percent for a certain font.
-  3. After I got binary clipped images, I need to feed them to model I trained. The problem is I need to convert them into binary format again. Time complexity is high.
+  3. After getting binary clipped images, I need to feed them to the model I trained and convert back at the end, which has a high time complexity.
 
 
 #### TODO:
